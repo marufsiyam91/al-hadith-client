@@ -10,6 +10,10 @@ function App() {
       <div>
         <Navbar/>
       </div>
+
+      <div className="w-full h-full bg-[#F2F4F6]">
+        
+      </div>
     </main>
   )
 }
