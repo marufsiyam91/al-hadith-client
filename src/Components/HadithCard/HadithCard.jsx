@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { PiBooksFill } from "react-icons/pi";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { RiBook3Line } from "react-icons/ri";
+import HadithLoad from "./HadithLoad";
 
 const HadithCard = () => {
   const [hadiths, setHadiths] = useState([]);
@@ -109,6 +110,14 @@ const HadithCard = () => {
 
   console.log(allHadiths)
 
+
+  if(isLoading) {
+    return <HadithLoad/>
+  }
+
+
+
+
   return (
     <div className="w-full h-full flex flex-col gap-4 overflow-y-scroll hadithcard_scrollar">
       {book && (
@@ -125,7 +134,7 @@ const HadithCard = () => {
                   </div>
                 </div>
 
-                <div className="hidden 2xl:flex items-center gap-1 p-4 pb-0">
+                <div className="hidden 2xl:flex items-center gap-1 p-2">
                   <PiBooksFill className="text-xl text-gray-400" />
                   <BiSolidRightArrow className="text-sm text-gray-300" />
                   <p className="font-primary"> {book.book_name}</p>
