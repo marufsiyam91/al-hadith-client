@@ -48,7 +48,7 @@ const Bookbar = () => {
   const bookBtn = !isShowMenu ? "py-3 font-primary text-lg font-medium text-center bg-primary w-1/2 rounded-tl-2xl text-white border-b outline-none" : "py-3 font-primary text-lg font-medium text-center bg-white w-1/2 rounded-tl-2xl border-b outline-none";
 
   return (
-    <div className="h-full w-[350px] bg-white rounded-2xl hidden 2xl:flex flex-col">
+    <div className="h-full w-[350px] bg-white rounded-2xl 2xl:flex flex-col">
       <div className="flex justify-between">
         <button onClick={() => setIsShowMenu(false)} className={bookBtn}>
           বই

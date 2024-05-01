@@ -25,18 +25,18 @@
 
   @keyframes fadeIn {
     0%{
-        opacity: 0.2;
+        opacity: 0.5;
       }
     50% {
         opacity: 1;
       }
     100%{
-        opacity: 0.2;
+        opacity: 0.5;
     }
   }
   
-.loadingBook{
-    animation: fadeIn 2s infinite ease-in-out;
+.loading{
+    animation: fadeIn 1.5s infinite ease-in-out;
 }
 
 

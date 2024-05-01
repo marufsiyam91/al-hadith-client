@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { IoCloseOutline } from "react-icons/io5";
+
 
 
 const Settings = () => {
@@ -10,8 +12,11 @@ const Settings = () => {
 
 
   return (
-    <div className="p-5 w-[340px] bg-white rounded-2xl">
-        <h2 className="font-primary text-center text-xl font-medium">সেটিংস</h2>
+    <div className="4xl:p-5 w-full 4xl:w-[340px] bg-white rounded-2xl">
+        <div className="flex items-center justify-between 4xl:mb-0 mb-12 4xl:mt-0 mt-2">
+        <h2 className="font-primary text-center text-2xl 4xl:text-xl font-medium">সেটিংস</h2>
+        <IoCloseOutline className="4xl:hidden block text-2xl"/>
+        </div>
 
         <p className="mt-4 mb-2 font-primary text-md font-medium">আরবি ফন্ট সিলেক্ট করুন</p>
 
