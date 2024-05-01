@@ -22,15 +22,15 @@ const Topbar = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-4 xl:gap-20">
-        <label className="border-2 rounded-lg hidden xl:flex gap-2 items-center p-3">
+      <div className="flex items-center gap-4 xl:gap-[68px]">
+        <label className="border-2 rounded-lg hidden xl:flex gap-3 items-center p-3">
         <IoSearchOutline className="text-lg text-[#5C5C5C]"/>
-        <input type="text" placeholder="Search Hadith" className="pr-10 focus:outline-none"/>
+        <input type="text" placeholder="Search Hadith" className="pr-8 focus:outline-none text-base"/>
         </label>
-        <div className="xl:hidden block p-3 bg-[#ECEEF0] rounded-lg"><IoSearchOutline className="text-lg xl:text-xl text-[#5C5C5C]"/></div>
+        <div className="xl:hidden block p-[10px] bg-[#ECEEF0] rounded-lg"><IoSearchOutline className="text-xl  text-[#5C5C5C]"/></div>
 
         <button className="4xl:flex hidden font-primary bg-primary text-white gap-2 text-base items-center py-3 px-5 rounded-lg font-medium">সাপোর্ট করুন <span  className="text-2xl"><BiSolidDonateHeart /></span></button>
-        <div className="block 4xl:hidden bg-primary p-3 rounded-lg"><IoSettingsSharp className="text-lg xl:text-xl text-white"/></div>
+        <div className="block 4xl:hidden bg-primary p-[10px] rounded-lg"><IoSettingsSharp className="text-xl  text-white"/></div>
       </div>
     </div>
   );

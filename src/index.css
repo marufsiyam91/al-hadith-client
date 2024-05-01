@@ -1,5 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bookbarScroll::-webkit-scrollbar {
+    width: 5px;
+    height: 50px; /* Set the scrollbar height to 50px */
+    position: absolute;
+  }
+  
+  .bookbarScroll::-webkit-scrollbar-track {
+    height: 50px; /* Match the scrollbar height */
+    position: absolute;
+  }
+  
+  .bookbarScroll::-webkit-scrollbar-thumb {
+    position: absolute;
+    background-color: var(--primarycolor);
+    background: #CCCFD2;
+    border-radius: 0.5rem;
+    height: 50px; /* The scrollbar thumb height is already set to 50px */
+  }
+
+  @keyframes fadeIn {
+    0%{
+        opacity: 0.2;
+      }
+    50% {
+        opacity: 1;
+      }
+    100%{
+        opacity: 0.2;
+    }
+  }
+  
+.loadingBook{
+    animation: fadeIn 2s infinite ease-in-out;
+}
+
+
+.hadithcard_scrollar::-webkit-scrollbar {
+  width: 5px;
+  height: 20px;
+  border-radius: 2px;
+  background: transparent;
+}
+
+.hadithcard_scrollar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+.hadithcard_scrollar::-webkit-scrollbar-thumb {
+  background-color: #979797;
+  border-radius: 4px;
+  position: relative;
+
+}
