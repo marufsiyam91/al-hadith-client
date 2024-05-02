@@ -17,7 +17,7 @@ function App() {
           <div className="2xl:block hidden 2xl:m-5 2xl:mr-0">
             <Bookbar />
           </div>
-          <div className="w-full my-5 4xl:mr-0 xl:mr-5 mr-3 2xl:ml-0 xl:ml-5 ml-3">
+          <div className="w-full mt-5 4xl:mr-0 xl:mr-5 mr-3 2xl:ml-0 xl:ml-5 ml-3">
             <HadithCard />
           </div>
           <div className="4xl:block hidden 4xl:m-5 4xl:ml-0">
