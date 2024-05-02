@@ -64,7 +64,7 @@ const HadithLoad = () => {
                     <div className="w-20 h-4 rounded-lg bg-slate-100"></div>
                 </div>
             </div>
-            <div className="text-right flex items-end flex-col gap-3 mt-4">
+            <div className="text-right flex items-end flex-col gap-4 mt-4">
                 <div className="w-full h-4 rounded-lg bg-slate-100 loading"></div>
                 <div className="w-full h-4 rounded-lg bg-slate-100 loading"></div>
                 <div className="w-full h-4 rounded-lg bg-slate-100 loading"></div>

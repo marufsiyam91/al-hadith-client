@@ -41,6 +41,8 @@
 
 
 .hadithcard_scrollar::-webkit-scrollbar {
+  position: absolute;
+  top: -25px;
   width: 5px;
   height: 20px;
   border-radius: 2px;
@@ -48,12 +50,64 @@
 }
 
 .hadithcard_scrollar::-webkit-scrollbar-track {
+  position: absolute;
+  top: -25px;
   background: rgba(0, 0, 0, 0);
 }
 
 .hadithcard_scrollar::-webkit-scrollbar-thumb {
+  position: absolute;
+  top: -25px;
   background-color: #979797;
   border-radius: 4px;
   position: relative;
+}
 
+
+
+
+@media (max-width: 1534px) {
+  @keyframes slideFromRight {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 0;
+    }
+  }
+
+  @keyframes opacity {
+    from {
+      opacity: 0;
+    }
+    to{
+      opacity: .7;
+    }
+  }
+  
+  .settingbarAppear{
+    animation: slideFromRight 0.7s ease forwards;
+  }
+
+  .opacity{
+    animation: opacity 0.5s ease;
+  }
+
+
+}
+
+
+@media (max-width: 1279px) {
+  @keyframes slideFromLeft {
+    from {
+      left: -100%; 
+    }
+    to {
+      left: 0;
+    }
+  }
+
+  .BookLoadAnimation{
+    animation: slideFromLeft 0.7s ease forwards;
+  }
 }

@@ -88,7 +88,7 @@ const HadithCard = () => {
 
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 overflow-y-scroll hadithcard_scrollar">
+    <div className="w-full h-full flex flex-col gap-4 overflow-y-scroll hadithcard_scrollar relative">
       {book && (
         <div className="w-full h-auto bg-white rounded-xl 2xl:flex flex-col gap-4 ">
           {book &&
@@ -104,13 +104,12 @@ const HadithCard = () => {
                 </div>
 
                 <div className="2xl:hidden fixed">
-                {
-                  showBookbar &&
-                  <>
-                  <Bookbar closeBookbar={closeBookbar}/>
-                  <div className="fixed top-0 left-0 bg-black opacity-70 w-full h-full "></div>
-                  </>
-                }
+                  {showBookbar &&
+                    <>
+                      <Bookbar closeBookbar={closeBookbar} showbar={showBookbar}/>
+                      <div className="fixed top-0 left-0 bg-black opacity-70 w-full h-full opacity"></div>
+                    </>
+                  }
                 </div>
 
 
