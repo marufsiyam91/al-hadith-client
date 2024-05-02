@@ -50,8 +50,6 @@
 }
 
 .hadithcard_scrollar::-webkit-scrollbar-track {
-  position: absolute;
-  top: -25px;
   background: rgba(0, 0, 0, 0);
 }
 
@@ -63,7 +61,9 @@
   position: relative;
 }
 
-
+input[type="range"] {
+  accent-color: #2B9E76;
+}
 
 
 @media (max-width: 1534px) {

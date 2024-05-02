@@ -13,7 +13,7 @@ function App() {
         <div className="xl:w-[96px]">
           <Navbar />
         </div>
-        <div className="w-full h-[calc(100vh-80px)] bg-[#F2F4F6] xl:rounded-tl-3xl p-5 pr-4 flex gap-6 justify-between">
+        <div className="w-full h-[calc(100vh-120px)] xl:h-[calc(100vh-80px)] bg-[#F2F4F6] xl:rounded-tl-3xl p-3 xl:p-5 pr-4 flex gap-6 justify-between">
           <div className="2xl:block hidden">
             <Bookbar />
           </div>
