@@ -12,6 +12,10 @@ const Topbar = () => {
 
   const [isShowSettingBar, setIsShowSettingsBar] = useState(false)
 
+  const CloseSettingsBar = () => {
+    setIsShowSettingsBar(false)
+  }
+
 
   return (
     <div className="flex items-center h-16 xl:h-20 justify-between px-4">
@@ -36,17 +40,19 @@ const Topbar = () => {
         <div className="xl:hidden block p-[10px] bg-[#ECEEF0] rounded-lg"><IoSearchOutline className="text-xl  text-[#5C5C5C]"/></div>
 
         <button className="4xl:flex hidden font-primary bg-primary text-white gap-2 text-base items-center py-3 px-5 rounded-lg font-medium">সাপোর্ট করুন <span  className="text-2xl"><BiSolidDonateHeart /></span></button>
-        <div onClick={() => setIsShowSettingsBar(prevState => !prevState)} className="block 4xl:hidden bg-primary p-[10px] rounded-lg"><IoSettingsSharp className="text-xl  text-white"/></div>
+        <div onClick={() => setIsShowSettingsBar(true)} className="block 4xl:hidden bg-primary p-[10px] rounded-lg"><IoSettingsSharp className="text-xl  text-white"/></div>
 
+      <div className="4xl:hidden fixed z-20">
         {
           isShowSettingBar &&
           (
-          <>
-          <Settingsbar/>
-          <div className="fixed w-full h-full top-0 left-0 bg-black z-10 opacity-70"></div>
+            <>
+          <Settingsbar CloseSettingsBar={CloseSettingsBar}/>
+          <div className="fixed w-full h-full top-0 left-0 bg-black z-10 opacity-70 "></div>
           </>
         )
-        }
+      }
+      </div>
 
       </div>
     </div>

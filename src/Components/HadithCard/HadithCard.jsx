@@ -6,97 +6,64 @@ import { PiBooksFill } from "react-icons/pi";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { RiBook3Line } from "react-icons/ri";
 import HadithLoad from "./HadithLoad";
+import Bookbar from "../BookbarCompos/Bookbar";
 
 const HadithCard = () => {
-  const [hadiths, setHadiths] = useState([]);
-  const [sections, setSections] = useState([]);
-  const [allHadiths, setAllHadiths] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [book, setBook] = useState([]);
-  const [chapter, setChapter] = useState([]);
+  const [data, setData] = useState({
+    isLoading: true,
+    error: null,
+    book: [],
+    chapter: [],
+    hadiths: [],
+    sections: [],
+    allHadiths: [],
+  });
+  
+  const [showBookbar, setShowBookbar] = useState(false)
+  
+  const closeBookbar = () => {
+    setShowBookbar(false)
+  }
 
-  // Fetch data from APIs
+  const { isLoading, error, book, chapter, allHadiths } = data;
+
   useEffect(() => {
-    const fetchHadiths = async () => {
-      setIsLoading(true);
+    const fetchData = async () => {
       try {
-        const res = await fetch(
-          "https://al-hadith-backend-1.onrender.com/api/hadiths"
-        );
-        if (!res.ok) {
-          throw new Error("Something went wrong while fetching hadiths");
+        const [hadithsRes, sectionsRes, booksRes, chaptersRes] = await Promise.all([
+          fetch("https://al-hadith-backend-1.onrender.com/api/hadiths"),
+          fetch("https://al-hadith-backend-1.onrender.com/api/sections"),
+          fetch("https://al-hadith-backend-1.onrender.com/api/books"),
+          fetch("https://al-hadith-backend-1.onrender.com/api/chapters")
+        ]);
+        
+        if (!hadithsRes.ok || !sectionsRes.ok || !booksRes.ok || !chaptersRes.ok) {
+          throw new Error("Failed to fetch data");
         }
-        const fetchedHadiths = await res.json();
-        setHadiths(fetchedHadiths);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
+
+        const hadithsData = await hadithsRes.json();
+        const sectionsData = await sectionsRes.json();
+        const booksData = await booksRes.json();
+        const chaptersData = await chaptersRes.json();
+
+        setData({
+          isLoading: false,
+          error: null,
+          book: booksData,
+          chapter: chaptersData,
+          hadiths: hadithsData,
+          sections: sectionsData,
+          allHadiths: combineHadithsAndSections(sectionsData, hadithsData)
+        });
+      } catch (error) {
+        setData({ ...data, isLoading: false, error: error.message });
       }
     };
 
-    const fetchSections = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          "https://al-hadith-backend-1.onrender.com/api/sections"
-        );
-        if (!res.ok) {
-          throw new Error("Something went wrong while fetching sections");
-        }
-        const fetchedSections = await res.json();
-        setSections(fetchedSections);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const fetchBooks = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          "https://al-hadith-backend-1.onrender.com/api/books"
-        );
-        if (!res.ok) {
-          throw new Error("Something went wrong while fetching Books");
-        }
-        const fetchedBooks = await res.json();
-        setBook(fetchedBooks);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    const fetchChapters = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          "https://al-hadith-backend-1.onrender.com/api/chapters"
-        );
-        if (!res.ok) {
-          throw new Error("Something went wrong while fetching Books");
-        }
-        const fetchedChapter = await res.json();
-        setChapter(fetchedChapter);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchHadiths();
-    fetchSections();
-    fetchBooks();
-    fetchChapters();
+    fetchData();
   }, []);
 
-  // Combine hadiths and sections into a single array
-  useEffect(() => {
+  const combineHadithsAndSections = (sections, hadiths) => {
     const combined = [];
     const minLength = Math.min(sections.length, hadiths.length);
 
@@ -105,15 +72,17 @@ const HadithCard = () => {
       combined.push(hadiths[i]);
     }
 
-    setAllHadiths(combined);
-  }, [sections, hadiths]);
+    return combined;
+  };
 
-  console.log(allHadiths)
+  
 
 
-  if(isLoading) {
-    return <HadithLoad/>
+
+  if (isLoading) {
+    return <HadithLoad />;
   }
+
 
 
 
@@ -128,14 +97,26 @@ const HadithCard = () => {
                 <div>
                   <div className="2xl:hidden w-full h-auto p-4 flex items-center gap-4">
                     <div className="text-lg xl:text-xl">
-                      <GiHamburgerMenu />
+                      <GiHamburgerMenu onClick={() => setShowBookbar(true)}/>
                     </div>
                     <h2 className="text-xl font-primary">সহিহ বুখারী</h2>
                   </div>
                 </div>
 
-                <div className="hidden 2xl:flex items-center gap-1 p-2">
-                  <PiBooksFill className="text-xl text-gray-400" />
+                <div className="2xl:hidden fixed">
+                {
+                  showBookbar &&
+                  <>
+                  <Bookbar closeBookbar={closeBookbar}/>
+                  <div className="fixed top-0 left-0 bg-black opacity-70 w-full h-full "></div>
+                  </>
+                }
+                </div>
+
+
+
+                <div className="hidden 2xl:flex items-center gap-1 px-4 py-2">
+                  <PiBooksFill className="text-2xl text-gray-400" />
                   <BiSolidRightArrow className="text-sm text-gray-300" />
                   <p className="font-primary"> {book.book_name}</p>
                   <BiSolidRightArrow className="text-sm text-gray-300" />
@@ -145,7 +126,7 @@ const HadithCard = () => {
                   <div className="flex items-center gap-4">
                     <RiBook3Line className="text-[50px] text-[#2B9E76]" />
                     <div>
-                      <h3 className="text-2xl font-medium font-primary">{book.title}</h3>
+                      <h3 className="text-2xl font-medium font-primary mb-1">{book.title}</h3>
                       <p className="font-primary">সর্বমোট হাদিস {book.number_of_hadis}</p>
                     </div>
                   </div>
@@ -164,7 +145,7 @@ const HadithCard = () => {
               <div className="w-10 h-10 bg-[#2B9E76] flex items-center justify-center text-white rounded-xl">
                 {schapter.id}
               </div>
-              <h2 className="text-2xl">{schapter.title}</h2>
+              <h2 className="text-xl">{schapter.title}</h2>
             </div>
           ))}
         </div>

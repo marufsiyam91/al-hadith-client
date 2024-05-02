@@ -3,8 +3,10 @@ import { IoIosSearch } from "react-icons/io";
 import BookLoad from "./BookLoad";
 import Books from "./Books";
 import Chapters from './Chapters';
+import { IoCloseOutline } from "react-icons/io5";
 
-const Bookbar = () => {
+
+const Bookbar = ({closeBookbar}) => {
   const [isShowMenu, setIsShowMenu] = useState(true);
   const [books, setBooks] = useState([])
   const [chapters, setChapters] =useState([])
@@ -44,12 +46,18 @@ const Bookbar = () => {
 
 
 
-  const chapterBtn = isShowMenu ? "py-3 font-primary text-lg font-medium text-center bg-primary w-1/2 rounded-tr-2xl text-white border-b outline-none" : "py-3 font-primary text-lg font-medium text-center bg-white w-1/2 rounded-tr-2xl border-b outline-none";
-  const bookBtn = !isShowMenu ? "py-3 font-primary text-lg font-medium text-center bg-primary w-1/2 rounded-tl-2xl text-white border-b outline-none" : "py-3 font-primary text-lg font-medium text-center bg-white w-1/2 rounded-tl-2xl border-b outline-none";
+  const chapterBtn = isShowMenu ? "py-3 font-primary text-lg font-medium text-center bg-primary w-1/2 2xl:rounded-tr-2xl text-white outline-none" : "py-3 font-primary text-lg font-medium text-center bg-white w-1/2 2xl:rounded-tr-2xl outline-none";
+  const bookBtn = !isShowMenu ? "py-3 font-primary text-lg font-medium text-center bg-primary w-1/2 2xl:rounded-tl-2xl text-white outline-none" : "py-3 font-primary text-lg font-medium text-center bg-white w-1/2 2xl:rounded-tl-2xl outline-none";
 
   return (
-    <div className="h-full w-[350px] bg-white rounded-2xl 2xl:flex flex-col">
-      <div className="flex justify-between">
+    <div className="fixed z-10 top-0 left-0 2xl:relative h-full w-[385px] 2xl:w-[350px] bg-white 2xl:rounded-2xl 2xl:flex flex-col">
+
+      <div className="2xl:hidden flex items-center justify-between px-5 py-6">
+        <h2 className="text-xl font-medium">ক্যাটাগরি</h2>
+        <IoCloseOutline onClick={() => closeBookbar()} className="text-2xl"/>
+      </div>
+
+      <div className="flex justify-between 2xl:border-t-0 border-t border-b">
         <button onClick={() => setIsShowMenu(false)} className={bookBtn}>
           বই
         </button>
