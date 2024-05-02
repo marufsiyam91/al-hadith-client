@@ -88,7 +88,7 @@ const HadithCard = () => {
 
 
   return (
-    <div className="w-full h-full xl:rounded-none rounded-2xl flex flex-col gap-4 overflow-y-scroll hadithcard_scrollar relative">
+    <div className="w-full h-full flex flex-col gap-4 overflow-y-scroll hadithcard_scrollar relative">
       {book && (
         <div className="w-full h-auto bg-white rounded-xl 2xl:flex flex-col gap-4 ">
           {book &&
